@@ -29,13 +29,16 @@
                 <div class="col-xs-12">
                     <label class="label-control">Imagen</label>
                     <input class="form-control-file" type="file" name="imagen">
+                    <br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-12">
                     <label class="label-control">Descripción</label>
+                    <br>
                     <textarea class="form-control-file" name="descripcion"><?= $descripcion ?></textarea>
-                    <button class="pull-right btn btn-lg sr-button">Enviar</button>
+                    <br>
+                    <button class="pull-right btn btn-lg sr-button">ENVIAR</button>
                 </div>
             </div>
         </form>

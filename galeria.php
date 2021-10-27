@@ -27,13 +27,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 }
 
 
-
-
-
-
-
-
-
-
 require 'views/galeria.view.php';
 
