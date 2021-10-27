@@ -1,6 +1,8 @@
 <?php
 
 require_once 'entity/ImagenGaleria.php';
+require_once 'entity/Asociado.php';
+require_once 'utils/utils.php';
 
 $imagenes = [
 
@@ -90,7 +92,41 @@ $imagenes = [
     ),
 ];
 
-require 'utils/utils.php';
+$asociados = [
+    new Asociado(
+        'Primer Asociado',
+        'log1.jpg',
+        'Descripción Primer Asociado'
+    ),
+    new Asociado(
+        'Segundo Asociado',
+        'log2.jpg',
+        'Descripción Segundo Asociado'
+    ),
+    new Asociado(
+        'Tercer Asociado',
+        'log3.jpg',
+        'Descripción Tercer Asociado'
+    ),
+    new Asociado(
+        'Cuarto Asociado',
+        'log3.jpg',
+        'Descripción Cuarto Asociado'
+    ),
+    new Asociado(
+        'Quinto Asociado',
+        'log1.jpg',
+        'Descripción Quinto Asociado'
+    ),
+    new Asociado(
+        'Sexto Asociado',
+        'log2.jpg',
+        'Descripción Sexto Asociado'
+    ),
+];
+
+$asociados = obtenerArrayReducido($asociados,3);
+
 require 'views/index.view.php';
 
 

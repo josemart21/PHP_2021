@@ -37,4 +37,16 @@ function existeOpcionMenuActivaEnArray($opcionesMenu){
 
 }
 
+function obtenerArrayReducido(array $arrAReducir, int $numElementosReduccion) : array
+{
+
+    shuffle($arrAReducir);
+
+    $trozos = array_chunk($arrAReducir, $numElementosReduccion);
+
+    return $trozos[0];
+
+
+}
+
 ?>
