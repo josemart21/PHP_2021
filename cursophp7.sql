@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2021 a las 20:41:44
+-- Tiempo de generación: 03-11-2021 a las 17:00:42
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -42,9 +42,18 @@ CREATE TABLE `asociados` (
 
 CREATE TABLE `categorias` (
   `id` int(11) NOT NULL,
-  `nombre` int(11) DEFAULT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `numImagenes` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`, `numImagenes`) VALUES
+(1, 'Categoría 1', NULL),
+(2, 'Categoría 2', NULL),
+(3, 'Categoría 3', NULL);
 
 -- --------------------------------------------------------
 
@@ -55,7 +64,7 @@ CREATE TABLE `categorias` (
 CREATE TABLE `imagenes` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `categoria` int(11) DEFAULT NULL,
+  `categoria` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `descripcion` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `numVisualizaciones` int(11) DEFAULT NULL,
   `numLikes` int(11) DEFAULT NULL,
@@ -92,7 +101,8 @@ ALTER TABLE `asociados`
 -- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
 -- Indices de la tabla `imagenes`
@@ -112,10 +122,10 @@ ALTER TABLE `mensajes`
 --
 
 --
--- Filtros para la tabla `categorias`
+-- Filtros para la tabla `imagenes`
 --
-ALTER TABLE `categorias`
-  ADD CONSTRAINT `categorias_ibfk_1` FOREIGN KEY (`id`) REFERENCES `imagenes` (`categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `imagenes`
+  ADD CONSTRAINT `imagenes_ibfk_1` FOREIGN KEY (`categoria`) REFERENCES `categorias` (`nombre`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
