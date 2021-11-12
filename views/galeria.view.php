@@ -47,7 +47,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">0</th>
+                    <th scope="col">#</th>
                     <th scope="col">Imagen</th>
                     <th scope="col">Visualizaciones</th>
                     <th scope="col">Likes</th>
@@ -62,7 +62,8 @@
                         <td>
                             <img src="<?= $imagen->getUrlGallery() ?>"
                             alt="<?= $imagen->getDescripcion() ?>"
-                            title="<?= $imagen->getDescripcion() ?>">
+                            title="<?= $imagen->getDescripcion() ?>"
+                            width="100px">
                         </td>
                         <td><?= $imagen->getNumVisualizaciones()?></td>
                         <td><?= $imagen->getNumLikes()?></td>
@@ -70,7 +71,6 @@
                     </tr>
                     <? endforeach; ?>
                 </tbody>
-
             </table>
         </div>
      </div>
