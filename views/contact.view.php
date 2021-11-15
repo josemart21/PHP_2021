@@ -9,73 +9,13 @@
        	   <hr>
        	   <p>Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
 
-            <?php
+            <?php require_once 'contact.php'?>
 
-            $formulario = [
+            <?php foreach ($errores as $error){
 
-                    [
-                      'nombre' => '',
-                      'apellido' => '',
-                      'correo' => '',
-                      'tema' => '',
-                      'mensaje' => ''
-                    ],
-                [
-                    'nombre' => '',
-                    'apellido' => '',
-                    'correo' => '',
-                    'tema' => '',
-                    'mensaje' => ''
-                ],
-                [
-                    'nombre' => '',
-                    'apellido' => '',
-                    'correo' => '',
-                    'tema' => '',
-                    'mensaje' => ''
-                ]
-            ];
+                echo $error . "<br>";
 
-
-
-
-            if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                $nombre = trim(htmlspecialchars($_POST['nombre']));
-                $apellido = trim(htmlspecialchars($_POST['apellido']));
-                $correo = trim(htmlspecialchars($_POST['correo']));
-                $tema = trim(htmlspecialchars($_POST['tema']));
-                $mensaje = trim(htmlspecialchars($_POST['mensaje']));
-                $validacionOK = true;
-
-                if (!empty($nombre) && !empty($correo) && !empty($tema)) {
-
-                    if (filter_var($correo, FILTER_VALIDATE_EMAIL) === false) {
-
-                        $validacionOK = false;
-                        echo "<div>El correo electrónico no és correcto</div>";
-
-                    }
-                } else {
-
-                    $validacionOK = false;
-                    echo "<div>Error. Revise los campos vacíos</div>";
-
-
-                }
-
-
-                if ($validacionOK === true) {
-
-                    $formulario[] = ['nombre' => $nombre, 'apellido' => $apellido, 'correo' => $correo, 'tema' => $tema, 'mensaje' => $mensaje];
-
-                }
-            }
-
-            ?>
-
-
-
+            } ?>
 
             <form class="form-horizontal" method="post">
 	       	  <div class="form-group">
