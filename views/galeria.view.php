@@ -36,7 +36,7 @@
                 <div class="col-xs-12">
                     <label class="label-control">Descripción</label>
                     <br>
-                    <textarea class="form-control-file" name="descripcion"><?= $descripcion ?></textarea>
+                    <textarea class="form-control-file form-control" name="descripcion"><?= $descripcion ?></textarea>
                     <br>
                     <button class="pull-right btn btn-lg sr-button">ENVIAR</button>
                 </div>

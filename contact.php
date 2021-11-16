@@ -15,6 +15,7 @@ $formulario = [
 ];
 
 $errores = [];
+$mensajeRecibido = '';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,8 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $validacionOK = false;
         array_push($errores, "Error. Revise los campos vacíos");
 
-
-
     }
 
 
@@ -49,6 +48,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $formulario[] = ['nombre' => $nombre, 'apellido' => $apellido, 'correo' => $correo, 'tema' => $tema, 'mensaje' => $mensaje];
 
     }
+
+
+    if(empty($errores)){
+
+        require_once 'database/Connection.php';
+
+        $config = require_once 'app/config.php';
+        $connection = Connection::make($config['database']);
+
+        $sql = "INSERT INTO mensajes (nombre,apellido,correo,tema,mensaje) values ('$nombre','$apellido','$correo','$tema','$mensaje')";
+
+        if($connection->exec($sql) === false){
+
+            $errores[] = "No se ha podido guardar el mensaje en la base de datos";
+
+        }else{
+
+            $mensajeRecibido = 'Hemos recibido tu mensaje';
+
+        }
+
+    }
+
+
+
 }
 
 
