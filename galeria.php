@@ -2,19 +2,28 @@
 
 require_once 'utils/utils.php';
 require_once 'exceptions/FileException.php';
+require_once 'exceptions/AppException.php';
+require_once 'exceptions/QueryException.php';
 require_once 'utils/File.php';
 require_once 'entity/ImagenGaleria.php';
+require_once 'repository/ImagenGaleriaRepository.php';
+require_once 'entity/Categoria.php';
+require_once 'repository/CategoriaRepository.php';
 require_once 'database/Connection.php';
 require_once 'database/QueryBuilder.php';
+require_once 'core/App.php';
 
 $errores = [];
 $descripcion = '';
 $mensaje = '';
 
 try {
-
     $config = require_once 'app/config.php';
-    $connection = Connection::make($config['database']);
+
+    App::bind('config', $config);
+
+    $imgRepository = new ImagenGaleriaRepository();
+    $categoriaRepository = new CategoriaRepository();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -27,26 +36,15 @@ try {
 
         $connection = Connection::make();
 
-        $sql = "INSERT INTO imagenes (nombre,descripcion) VALUES (:nombre, :descripcion)";
-
-        $pdoStatement = $connection->prepare($sql);
-
-        $parameters = [':nombre' => $imagen->getFileName(), ':descripcion' => $descripcion];
-
-        if ($pdoStatement->execute($parameters) === false) {
-
-            $errores[] = "No Se Ha Podido Guardar La Imágen En La Base De Datos";
-
-        } else {
+        $imagenGaleria = new ImagenGaleria ($imagen->getFileName(), $descripcion);
+        $imgRepository->save($imagenGaleria);
 
             $descripcion = '';
             $mensaje = 'Se Ha Guardado La Imágen';
         }
 
-    }
-
-    $queryBuilder = new QueryBuilder($connection);
-    $imagenes = $queryBuilder->findAll('imagenes', 'ImagenGaleria');
+    $imagenes = $imgRepository->findAll();
+    $categorias = $categoriaRepository->findAll();
 
 }
 catch(FileException $fileException){
@@ -54,6 +52,9 @@ catch(FileException $fileException){
 }
 catch (QueryException $queryException){
     $errores[] = $queryException->getMessage();
+}
+catch(AppException $appException) {
+    $errores[] = $appException->getMessage();
 }
 
 require 'views/galeria.view.php';

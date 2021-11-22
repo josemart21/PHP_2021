@@ -1,6 +1,6 @@
 <?php
-
-class ImagenGaleria
+require_once __DIR__ . '/../database/IEntity.php';
+class ImagenGaleria implements IEntity
 {
 
     const RUTA_IMAGENES_PORTFOLIO = 'images/index/portfolio/';
@@ -35,6 +35,10 @@ class ImagenGaleria
      * @var int
      */
     private $numDownloads;
+    /**
+     * @var int
+     */
+    private $categoria;
 
     /**
      * @param string $nombre
@@ -43,7 +47,7 @@ class ImagenGaleria
      * @param int $numLikes
      * @param int $numDownloads
      */
-    public function __construct($nombre="", $descripcion="", $numVisualizaciones=0, $numLikes=0, $numDownloads=0)
+    public function __construct($nombre = "", $descripcion = "", $numVisualizaciones = 0, $numLikes = 0, $numDownloads = 0, int $categoria=0)
     {
         $this->id = null;
         $this->nombre = $nombre;
@@ -51,6 +55,7 @@ class ImagenGaleria
         $this->numVisualizaciones = $numVisualizaciones;
         $this->numLikes = $numLikes;
         $this->numDownloads = $numDownloads;
+        $this->categoria = $categoria;
     }
 
     public function getId()
@@ -162,8 +167,28 @@ class ImagenGaleria
     }
 
     /**
+     * @return int
+     */
+    public function getCategoria(): int
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param int $categoria
+     * @return ImagenGaleria
+     */
+    public function setCategoria(int $categoria): ImagenGaleria
+    {
+        $this->categoria = $categoria;
+        return $this;
+    }
+
+    /**
      * @return string
      */
+
+
 
     public function getUrlProtfolio()
     {
@@ -175,7 +200,18 @@ class ImagenGaleria
         return self::RUTA_IMAGENES_GALLERY . $this->getNombre();
     }
 
-
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'nombre' => $this->getNombre(),
+            'descripcion' => $this->getDescripcion(),
+            'numVisualizaciones' => $this->getNumVisualizaciones(),
+            'numLikes' => $this->getNumLikes(),
+            'numDownloads' => $this->getNumDownloads (),
+            'categoria' => $this->getcategoria()
+            ];
+    }
 
 
 

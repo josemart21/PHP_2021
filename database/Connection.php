@@ -1,12 +1,19 @@
 <?php
 
+require_once  __DIR__ . '/../core/App.php';
+
 class Connection
 {
 
-    public static function make($config){
+    /**
+     * @return PDO
+     * @throws AppException
+     */
+
+    public static function make(){
 
         try{
-
+            $config = App::get('config')['database'];
             $connection = new PDO(
 
                 $config['connection'] . ';dbname=' .$config['name'],
@@ -18,7 +25,7 @@ class Connection
 
         }catch(PDOException $PDOException){
 
-            die($PDOException ->getMessage());
+            throw new AppException('No se ha podido crear la conexión a la base de datos');
 
         }
 
