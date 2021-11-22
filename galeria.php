@@ -25,7 +25,7 @@ try {
     $imgRepository = new ImagenGaleriaRepository();
     $categoriaRepository = new CategoriaRepository();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === '    POST') {
 
         $descripcion = trim(htmlspecialchars($_POST['descripcion']));
         $tiposAceptados = ['image/jpeg', 'image/png', 'image/gif'];

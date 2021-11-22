@@ -4,29 +4,16 @@ require_once __DIR__ . '/../database/IEntity.php';
 
 class Categoria implements IEntity
 {
-
-    /**
-     * @var int
-     */
     private $id;
+    private string $nombre;
+    private int $numImagenes;
 
     /**
-     * @var string
-     */
-    private $nombre;
-
-    /**
-     * @var int
-     */
-
-    private $numImagenes;
-
-    /**
-     * Categoria constructor
+     * Categoria constructor.
      * @param string $nombre
      * @param int $numImagenes
      */
-    public function __construct(string $nombre, int $numImagenes)
+    public function __construct(string $nombre="", int $numImagenes=0)
     {
         $this->id = null;
         $this->nombre = $nombre;
@@ -36,7 +23,7 @@ class Categoria implements IEntity
     /**
      * @return int
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -85,7 +72,7 @@ class Categoria implements IEntity
 
             'id' => $this->getId(),
             'nombre' => $this->getNombre(),
-            'numImagenes' => $this->getNumImaganes()
+            'numImagenes' => $this->getNumImagenes()
 
         ];
     }

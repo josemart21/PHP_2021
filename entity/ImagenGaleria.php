@@ -6,39 +6,13 @@ class ImagenGaleria implements IEntity
     const RUTA_IMAGENES_PORTFOLIO = 'images/index/portfolio/';
     const RUTA_IMAGENES_GALLERY = 'images/index/gallery/';
 
-    /**
-     * @var int
-     */
     private $id;
-
-    /**
-     * @var string
-     */
-    private $nombre;
-
-    /**
-     * @var string
-     */
-    private $descripcion;
-
-    /**
-     * @var int
-     */
-    private $numVisualizaciones;
-
-    /**
-     * @var int
-     */
-    private $numLikes;
-
-    /**
-     * @var int
-     */
-    private $numDownloads;
-    /**
-     * @var int
-     */
-    private $categoria;
+    private string $nombre;
+    private string $descripcion;
+    private int $numVisualizaciones;
+    private int $numLikes;
+    private int $numDownloads;
+    private int $categoria;
 
     /**
      * @param string $nombre
@@ -47,7 +21,7 @@ class ImagenGaleria implements IEntity
      * @param int $numLikes
      * @param int $numDownloads
      */
-    public function __construct($nombre = "", $descripcion = "", $numVisualizaciones = 0, $numLikes = 0, $numDownloads = 0, int $categoria=0)
+    public function __construct(string $nombre = "",string $descripcion = "",int $categoria=1,int $numVisualizaciones = 0,int $numLikes = 0,int $numDownloads = 0)
     {
         $this->id = null;
         $this->nombre = $nombre;
@@ -75,10 +49,6 @@ class ImagenGaleria implements IEntity
      * @return string
      */
 
-
-
-
-
     public function getNombre()
     {
         return $this->nombre;
@@ -94,10 +64,7 @@ class ImagenGaleria implements IEntity
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getDescripcion()
+    public function getDescripcion(): string
     {
         return $this->descripcion;
     }
@@ -112,10 +79,7 @@ class ImagenGaleria implements IEntity
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getNumVisualizaciones()
+    public function getNumVisualizaciones():int
     {
         return $this->numVisualizaciones;
     }
@@ -208,8 +172,8 @@ class ImagenGaleria implements IEntity
             'descripcion' => $this->getDescripcion(),
             'numVisualizaciones' => $this->getNumVisualizaciones(),
             'numLikes' => $this->getNumLikes(),
-            'numDownloads' => $this->getNumDownloads (),
-            'categoria' => $this->getcategoria()
+            'numDownloads' => $this->getNumDownloads(),
+            'categoria' => $this->getCategoria()
             ];
     }
 

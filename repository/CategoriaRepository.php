@@ -5,6 +5,10 @@ require_once __DIR__ . '/../database/QueryBuilder.php';
 class CategoriaRepository extends QueryBuilder
 {
 
+    /**
+     * ImagenGaleriaRepository constructor.
+     */
+
     public function __construct(string $table = 'categorias', string $classEntity = 'Categoria')
     {
 

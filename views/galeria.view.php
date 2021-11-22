@@ -35,9 +35,9 @@
             <div class="form-group">
                 <div class="col-xs-12">
                     <label class="label-control">Categoria</label>
-                    <option class="form-control" name="categoria">
+                    <select class="form-control" name="categoria">
                         <?php foreach($categorias as $categoria) : ?>
-                            <option value="<?= $categoria->getId()?>"<?= $categoria->getNombre()?></option>
+                            <option value="<?= $categoria->getId()?>"><?=$categoria->getNombre()?></option>
                         <?php endforeach; ?>
                     </select>
                     <br>
