@@ -21,7 +21,7 @@ class ImagenGaleria implements IEntity
      * @param int $numLikes
      * @param int $numDownloads
      */
-    public function __construct(string $nombre = "",string $descripcion = "",int $categoria=1,int $numVisualizaciones = 0,int $numLikes = 0,int $numDownloads = 0)
+    public function __construct(string $nombre = "",string $descripcion = "",int $categoria=0,int $numVisualizaciones = 0,int $numLikes = 0,int $numDownloads = 0)
     {
         $this->id = null;
         $this->nombre = $nombre;

@@ -13,7 +13,7 @@ class Categoria implements IEntity
      * @param string $nombre
      * @param int $numImagenes
      */
-    public function __construct(string $nombre="", int $numImagenes=0)
+    public function __construct(string $nombre='', int $numImagenes=0)
     {
         $this->id = null;
         $this->nombre = $nombre;

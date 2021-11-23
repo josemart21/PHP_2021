@@ -3,8 +3,36 @@
 require_once 'entity/ImagenGaleria.php';
 require_once 'entity/Asociado.php';
 require_once 'utils/utils.php';
+require_once 'database/QueryBuilder.php';
+require_once 'repository/ImagenGaleriaRepository.php';
+require_once 'database/Connection.php';
 
-$imagenes = [
+$config = require_once 'app/config.php';
+App::bind("config",$config);
+$imgRepository = new ImagenGaleriaRepository();
+$imagenes = $imgRepository->findAll();
+
+$imagenCat1 = getImgCat(1,$imagenes);
+$imagenCat2 = getImgCat(2,$imagenes);
+$imagenCat3 = getImgCat(3,$imagenes);
+
+function getImgCat(int $categoria,array $imagenes): array
+{
+
+$catgen = [];
+
+foreach ($imagenes as $imagen)
+{
+    if($imagen->getCategoria() == $categoria){
+        array_push($catgen,$imagen);
+    }
+}
+
+return $catgen;
+
+}
+
+/*$imagenes = [
 
     new ImagenGaleria(
         '1.jpg',
@@ -91,6 +119,7 @@ $imagenes = [
         '1'
     ),
 ];
+*/
 
 $asociados = [
     new Asociado(

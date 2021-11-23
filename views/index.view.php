@@ -43,7 +43,8 @@
 
                 $categoria = 'category1';
                 $categoriaActiva = true;
-                shuffle($imagenes);
+                shuffle($imagenCat1);
+                $imagenes = $imagenCat1;
                 include __DIR__ . '/partials/image-gallery.part.php';
 
             ?>
@@ -56,7 +57,8 @@
 
             $categoria = 'category2';
             $categoriaActiva = false;
-            shuffle($imagenes);
+            shuffle($imagenCat2);
+            $imagenes = $imagenCat2;
             include __DIR__ . '/partials/image-gallery.part.php';
 
             ?>
@@ -69,7 +71,8 @@
 
             $categoria = 'category3';
             $categoriaActiva = false;
-            shuffle($imagenes);
+            shuffle($imagenCat3);
+            $imagenes = $imagenCat3;
             include __DIR__ . '/partials/image-gallery.part.php';
 
             ?>
