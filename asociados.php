@@ -5,11 +5,18 @@ require_once 'exceptions/FileException.php';
 require_once 'exceptions/ValidationException.php';
 require_once 'utils/File.php';
 require_once 'entity/Asociado.php';
+require_once 'repository/AsociadoRepository.php';
+require_once 'database/Connection.php';
 
 $errores = [];
 
-
     try {
+
+        $config = require_once 'app/config.php';
+        App::bind('config',$config);
+
+        $asociadoRepository = new AsociadoRepository();
+
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $nombre = trim(htmlspecialchars($_POST['nombre']));
@@ -25,10 +32,16 @@ $errores = [];
             $imagenFile = new File('logo', $tiposAceptados);
             $imagenFile->saveUploadFile(Asociado::RUTA_IMAGENES_ASOCIADOS);
             $asociado = new Asociado($nombre,$imagenFile->getFileName(),$descripcion);
+
+            $asociadoRepository->save($asociado);
+
             $mensaje = "Se ha guardado el asociado ". $asociado->getNombre();
             $descripcion = "";
             $nombre = "";
         }
+
+        $asociados=$asociadoRepository->findAll();
+
     }catch(FileException $fileException){
         $errores[] = $fileException->getMessage();
     }

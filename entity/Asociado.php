@@ -1,9 +1,16 @@
 <?php
 
-class Asociado
+require_once __DIR__ . '/../database/IEntity.php';
+
+class Asociado implements IEntity
 {
 
     const RUTA_IMAGENES_ASOCIADOS = 'images/index/asociados/';
+
+    /**
+     * @var int
+     */
+    private $id;
 
     /**
      * @var string
@@ -23,11 +30,22 @@ class Asociado
      * @param string $logo
      * @param string $descripcion
      */
-    public function __construct(string $nombre, string $logo, string $descripcion)
+    //public function __construct(string $nombre, string $logo, string $descripcion)
+    public function __construct(string $nombre='', string $logo='', string $descripcion='')
     {
+        $this->id = null;
         $this->nombre = $nombre;
         $this->logo = $logo;
         $this->descripcion = $descripcion;
+    }
+
+    /**
+     * @return int
+     */
+
+    public function getId() : int
+    {
+        return $this->id;
     }
 
     /**
@@ -89,7 +107,15 @@ class Asociado
         return self::RUTA_IMAGENES_ASOCIADOS . $this->getLogo();
     }
 
-
+    public function toArray() : array
+    {
+        return[
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'logo' => $this->logo,
+            'descripcion' => $this->descripcion
+        ];
+    }
 
 
 }

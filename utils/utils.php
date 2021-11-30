@@ -37,7 +37,7 @@ function existeOpcionMenuActivaEnArray($opcionesMenu){
 
 }
 
-function obtenerArrayReducido(array $arrAReducir, int $numElementosReduccion) : array
+function obtenerArrayReducido(array $arrAReducir, int $numElementosReduccion):array
 {
 
     shuffle($arrAReducir);

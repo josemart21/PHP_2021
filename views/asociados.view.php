@@ -37,6 +37,37 @@
                     </div>
                 </form>
                 <hr class="divider">
+
+                <div class="asociados">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Logo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php foreach (($asociados ?? []) as $asociado) : ?>
+                            <tr>
+                                <th scope="row"><?= $asociado->getId()?></th>
+                                <td>
+                                    <img src="<?= $asociado->getUrlAsociados() ?>"
+                                         alt="<?= $asociado->getDescripcion() ?>"
+                                         title="<?= $asociado->getDescripcion() ?>"
+                                         width="100px">
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
                 <div class="imagenes_galeria">
                 </div>
             </div>

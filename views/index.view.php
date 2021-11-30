@@ -22,7 +22,7 @@
       <div id="index-body">
       <!-- Pictures Navigation table -->
         <div class="table-responsive">
-          <table class="table text-center">
+          <table class="table text-center" >
             <thead>
               <tr>
                 <td><a class="link active" href="#category1" data-toggle="tab">category I</a></td>
@@ -49,8 +49,8 @@
 
             ?>
 
-        <!-- End of First category pictures -->
 
+        <!-- End of First category pictures -->
         <!--second category pictures -->
 
             <?php
@@ -64,7 +64,6 @@
             ?>
 
         <!-- End of second category pictures -->
-
         <!-- Third Category Pictures -->
 
             <?php

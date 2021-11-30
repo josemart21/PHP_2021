@@ -6,6 +6,7 @@ require_once 'utils/utils.php';
 require_once 'database/QueryBuilder.php';
 require_once 'repository/ImagenGaleriaRepository.php';
 require_once 'database/Connection.php';
+require_once 'repository/AsociadoRepository.php';
 
 $config = require_once 'app/config.php';
 App::bind("config",$config);
@@ -121,7 +122,7 @@ return $catgen;
 ];
 */
 
-$asociados = [
+/*$asociados = [
     new Asociado(
         'Primer Asociado',
         'log1.jpg',
@@ -153,6 +154,16 @@ $asociados = [
         'Descripción Sexto Asociado'
     ),
 ];
+*/
+
+/*$asociados = [];
+
+array_push($asociados, new Asociado('Primer Asociado','log1.jpg','Descrip'));
+*/
+
+$asociadoRepository = new AsociadoRepository;
+$asociados = $asociadoRepository->findAll();
+
 
 $asociados = obtenerArrayReducido($asociados,3);
 

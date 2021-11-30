@@ -14,7 +14,8 @@
                     <li><img
                             src="<?= $asociado->getUrlAsociados() ?>"
                             alt="<?= $asociado->getDescripcion() ?>"
-                            title="<?= $asociado->getDescripcion() ?>"></li>
+                            title="<?= $asociado->getDescripcion() ?>"
+                            style="min-width: 100px"></li>
                     <li><?= $asociado->getNombre() ?></li>
                 </ul>
                 <?php endforeach; ?>
