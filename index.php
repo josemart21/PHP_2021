@@ -156,16 +156,18 @@ return $catgen;
 ];
 */
 
-/*$asociados = [];
 
-array_push($asociados, new Asociado('Primer Asociado','log1.jpg','Descrip'));
-*/
+$asociados = [];
 
 $asociadoRepository = new AsociadoRepository;
-$asociados = $asociadoRepository->findAll();
 
+if(count($asociadoRepository->findAll()) > 0) {
 
-$asociados = obtenerArrayReducido($asociados,3);
+    $asociados = $asociadoRepository->findAll();
+    $asociados = obtenerArrayReducido($asociados, 3);
+
+}
+
 
 require 'views/index.view.php';
 

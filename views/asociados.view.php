@@ -30,7 +30,7 @@
                         <div class="col-xs-12">
                             <label class="label-control">Descripción</label>
                             <br>
-                            <textarea class="form-control-file" name="descripcion"><?= $descripcion ?? '' ?></textarea>
+                            <textarea class="form-control-file form-control" name="descripcion"><?= $descripcion ?? '' ?></textarea>
                             <br>
                             <button class="pull-right btn btn-lg sr-button">ENVIAR</button>
                         </div>
@@ -52,11 +52,12 @@
                         <?php foreach (($asociados ?? []) as $asociado) : ?>
                             <tr>
                                 <th scope="row"><?= $asociado->getId()?></th>
+                                <th scope="row"><?= $asociado->getNombre()?></th>
                                 <td>
                                     <img src="<?= $asociado->getUrlAsociados() ?>"
                                          alt="<?= $asociado->getDescripcion() ?>"
                                          title="<?= $asociado->getDescripcion() ?>"
-                                         width="100px">
+                                         style="max-width: 50px; max-height: 50px">
                                 </td>
                             </tr>
                         <?php endforeach; ?>

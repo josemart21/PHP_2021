@@ -4,7 +4,7 @@
                 <?php foreach($imagenes as $imagen) : ?>
 
                     <div class="col-xs-12 col-sm-6 col-md-3">
-                <div class="sol">
+                <div style='max-width:300px' class="sol">
                     <img class="img-responsive"
                     src="<?= $imagen ->getUrlProtfolio() ?>"
                     alt="<? $imagen -> getDescripcion() ?>">
