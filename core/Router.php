@@ -9,7 +9,12 @@ class Router
      */
     private function __construct()
     {
-        $this->routes = [];
+        $this->routes = [
+
+            'GET' => [],
+            'POST' => []
+
+        ];
     }
 
     /**
@@ -29,12 +34,23 @@ class Router
     }
 
     /**
-     * @param array $routes
+     * @param string $uri
+     * @param string $controller
      */
 
-    public function define(array $routes):void
+    public function get(string $uri, string $controller):void
     {
-        $this->routes = $routes;
+        $this->routes['GET'][$uri] = $controller;
+    }
+
+    /**
+     * @param string $uri
+     * @param string $controller
+     */
+
+    public function post(string $uri, string $controller):void
+    {
+        $this->routes['POST'][$uri] = $controller;
     }
 
     /**
@@ -43,15 +59,20 @@ class Router
      * @throws NotFoundException
      */
 
-    public function direct(string $uri):string
+    public function direct(string $uri, string $method):string
     {
-        if(array_key_exists($uri, $this->routes))
+        if(array_key_exists($uri, $this->routes[$method]))
 
-            return $this->routes[$uri];
+            return $this->routes[$method][$uri];
 
         throw new NotFoundException('No se ha definido una ruta para la uri solicitada');
 
 
+    }
+
+    public function redirect(string $path)
+    {
+        header('location: /' . $path);
     }
 
 }

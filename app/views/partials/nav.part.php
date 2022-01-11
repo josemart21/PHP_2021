@@ -35,7 +35,7 @@
                   </a>
               </li>
                 <li class="<?= esOpcionMenuActiva('galeria') ? 'active' : '' ?> lien">
-                    <a href="<?= esOpcionMenuActiva('galeria') ? '#' : '/galeria' ?>">
+                    <a href="<?= esOpcionMenuActiva('galeria') ? '#' : '/imagenes-galeria' ?>">
                         <i class="fa fa-image sr-icons"></i> Galería
                     </a>
                 </li>

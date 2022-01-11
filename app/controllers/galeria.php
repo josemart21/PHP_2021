@@ -23,35 +23,9 @@ try {
     $categoriaRepository = new CategoriaRepository();
 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        $descripcion = trim(htmlspecialchars($_POST['descripcion']));
-        $categoria = trim(htmlspecialchars($_POST['categoria']));
-            if(empty($categoria)){
-                throw new ValidationException('No Se Ha Recibido La Categoría');
-            }
-        $tiposAceptados = ['image/jpeg', 'image/png', 'image/gif'];
-        $imagen = new File('imagen', $tiposAceptados);
-        $imagen->saveUploadFile(ImagenGaleria::RUTA_IMAGENES_GALLERY);
-        $imagen->copyFile(ImagenGaleria::RUTA_IMAGENES_GALLERY, ImagenGaleria::RUTA_IMAGENES_PORTFOLIO);
-
-
-        $connection = Connection::make();
-
-        $imagenGaleria = new ImagenGaleria ($imagen->getFileName(), $descripcion, $categoria);
-
-        $imgRepository->guarda($imagenGaleria);
-
-            $descripcion = '';
-            $mensaje = 'Se Ha Guardado La Imágen';
-        }
-
     $imagenes = $imgRepository->findAll();
     $categorias = $categoriaRepository->findAll();
 
-}
-catch(FileException $fileException){
-    $errores[] = $fileException->getMessage();
 }
 catch (QueryException $queryException){
     $errores[] = $queryException->getMessage();
@@ -59,9 +33,7 @@ catch (QueryException $queryException){
 catch(AppException $appException) {
     $errores[] = $appException->getMessage();
 }
-catch(ValidationException $validationException) {
-    $errores[] = $validationException->getMessage();
-}
+
 
 require __DIR__ . '/../views/galeria.view.php';
 
