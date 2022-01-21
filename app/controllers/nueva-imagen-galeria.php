@@ -35,13 +35,29 @@ try {
     $imgRepository = new ImagenGaleriaRepository();
     $imgRepository->guarda($imagenGaleria);
 
+    $message = "Se Ha Guardado Una Nueva Imagen: " . $imagenGaleria->getNombre();
+    App::get('logger')->add($message);
+
 
 } catch (FileException $fileException) {
+
     die($fileException->getMessage());
+
 } catch (QueryException $queryException) {
+
     die($queryException->getMessage());
+
 } catch (ValidationException $validationException) {
+
     die($validationException->getMessage());
+
 }
+catch (AppException $appException)
+{
+
+    die($appException->getMessage());
+
+}
+
 App::get('router')->redirect('imagenes-galeria');
 
